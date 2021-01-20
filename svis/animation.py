@@ -80,7 +80,7 @@ def animated_polar(curves,
     return HTML(anim.to_html5_video())
 
 
-def animated_surface(frames, interval=100, figsize=(15, 10), cmap='viridis'):
+def animated_surface(frames, interval=100, figsize=(10, 7), cmap='viridis'):
     
     
     def update_plot(frame_number, frames, plot):
@@ -90,8 +90,8 @@ def animated_surface(frames, interval=100, figsize=(15, 10), cmap='viridis'):
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111, projection='3d')
 
-    X = np.arange(frames.shape[1])
-    Y = np.arange(frames.shape[0])
+    X = np.arange(frames.shape[2])
+    Y = np.arange(frames.shape[1])
     X, Y = np.meshgrid(X, Y)
     Z = frames[0]
 
@@ -106,7 +106,7 @@ def animated_surface(frames, interval=100, figsize=(15, 10), cmap='viridis'):
     return HTML(anim.to_html5_video())
 
 
-def animated_flow(x, y, u, v, vid=None, interval=75, figsize=(10, 7)):
+def animated_flow(x, y, u, v, vid=None, interval=75, figsize=(10,7), cmap='viridis'):
     
     U = u #u[:, y, x]
     V = v #v[:, y, x]
@@ -115,7 +115,7 @@ def animated_flow(x, y, u, v, vid=None, interval=75, figsize=(10, 7)):
         ax.cla()
 
         if vid is not None:
-            ax.imshow(vid[num])
+            ax.imshow(vid[num], cmap=cmap)
         flow = ax.quiver(x, y, U[num], V[num])
         if vid is None:
             plt.gca().invert_yaxis()
@@ -124,7 +124,7 @@ def animated_flow(x, y, u, v, vid=None, interval=75, figsize=(10, 7)):
     fig, ax = plt.subplots(figsize=figsize)
     
     if vid is not None:
-        im = ax.imshow(vid[0])
+        im = ax.imshow(vid[0], cmap=cmap)
         
     flow = ax.quiver(x, y, U[0], V[0], color='black');
     

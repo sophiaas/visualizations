@@ -13,17 +13,17 @@ def surface(values, cmap='viridis', figsize=(10, 5)):
     plot = ax.plot_surface(X, Y, values, cmap=cmap, vmin=frames.min(), vmax=frames.max())
 
     
-def volume(values, colorscale='Phase', cmin=None, cmax=None)
+def volume(values, colorscale='Phase', cmin=None, cmax=None):
     from plotly.offline import init_notebook_mode, iplot
-    from plotly.graph_objs import *
+#     from plotly.graph_objs import *
     import plotly.graph_objects as go
     import plotly
 
     init_notebook_mode(connected=True)         # initiate notebook for offline plot
     X, Y, Z = np.mgrid[0:100, 0:values.shape[1], 0:values.shape[2]]
 
-    cmin = values.min() if cmin is None
-    cmax = values.max() if cmax is None
+    cmin = values.min() if cmin is None else cmin
+    cmax = values.max() if cmax is None else cmax
     
     fig = go.Figure(data=go.Volume(
         x=X.flatten(),
