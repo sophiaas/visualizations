@@ -3,6 +3,7 @@ import numpy as np
 
 
 def spherical_harmonic(l, m):
+    #TODO: Remove axes
     phi = np.linspace(0, np.pi, 100)
     theta = np.linspace(0, 2 * np.pi, 100)
     phi, theta = np.meshgrid(phi, theta)
@@ -20,6 +21,7 @@ def spherical_harmonic(l, m):
 
 
 def spherical_harmonics(l_max):
+    #TODO: Remove axes
     from plotly.offline import init_notebook_mode, iplot
     import plotly.graph_objects as go
     import plotly
@@ -34,7 +36,6 @@ def spherical_harmonics(l_max):
                     np.sin(theta) * np.cos(phi),
                     np.cos(theta)])
     
-#     fig = make_subplots(rows=l_max, cols=2*l_max+1, shared_yaxes=True)
     n_rows = l_max
     n_cols = 2 * l_max + 1
     plot_type = [[{'type': 'surface'}] * n_cols] * n_rows
