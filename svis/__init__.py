@@ -3,3 +3,4 @@ from svis.dvs import *
 from svis.image import *
 from svis.plot3d import *
 import svis.palettes
+import svis.special
