@@ -1,5 +1,6 @@
 import svis
 import numpy as np
+from scipy.special import sph_harm
 
 
 def spherical_harmonic(l, m):
@@ -25,7 +26,6 @@ def spherical_harmonics(l_max):
     from plotly.offline import init_notebook_mode, iplot
     import plotly.graph_objects as go
     import plotly
-    from scipy.special import sph_harm
     from plotly.subplots import make_subplots
 
     
