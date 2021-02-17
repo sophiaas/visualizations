@@ -53,7 +53,7 @@ def spherical_harmonics(l_max):
             elif m > 0:
                 Y = np.sqrt(2) * (-1) ** m * Y.real
 
-            p = svis.spherical(abs(Y), surfacecolor=Y.real, show=False)
+            p = svis.spherical(abs(Y), theta=theta, phi=phi, surfacecolor=Y.real, show=False)
             r = l + 1
             c = l_max +m  + 1
             fig.add_trace(p.data[0], row=l+1, col=l_max+m+1)
