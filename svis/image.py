@@ -17,9 +17,9 @@ def image_grid(data, shape=(10,10), figsize=(10,10), cmap='viridis', share_range
     for ax, im in zip(grid, data):
         # Iterating over the grid returns the Axes.
         if share_range:
-            ax.imshow(im, vmin=vmin, vmax=vmax)
+            ax.imshow(im, vmin=vmin, vmax=vmax, cmap=cmap)
         else:
-            ax.imshow(im)
+            ax.imshow(im, cmap=cmap)
         ax.set_axis_off()
 
     plt.show()
