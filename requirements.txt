@@ -1,0 +1,6 @@
+matplotlib
+plotly
+seaborn
+numpy
+scipy
+tqdm
