@@ -129,20 +129,30 @@ def spherical(values,
 #     Vx = values[:, 2] * z
     Vx = values * x
     Vy = values * y
-    Vx = values * z
+    Vz = values * z
 
 #     Vx, Vy, Vz = values * xyz
         
     if surface:
         if surfacecolor is None:
             surfacecolor=values
-        data = go.Surface(x=Vx, y=Vy, z=Vz, surfacecolor=surfacecolor)
+
+                                                                                                   
+                                          
+        data = go.Surface(x=Vx, y=Vy, z=Vz, surfacecolor=surfacecolor, )
         
     else:
 #         x, y, z = xyz
         data = go.Surface(x=x, y=y, z=z, surfacecolor=values)
         
     fig = go.Figure(data=data)
+    fig.update_xaxes(showgrid=False, zeroline=False)
+    fig.update_yaxes(showgrid=False, zeroline=False)
+#     fig['layout']['yaxis']['showgrid'] = False
+#     fig['layout']['xaxis']['showgrid'] = False
+#     fig['layout']['zaxis']['showgrid'] = False
+    
+    
 #     if show:
 #         fig.show()
     return fig
