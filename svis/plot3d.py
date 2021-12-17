@@ -81,22 +81,11 @@ def spherical(values,
               centered=False):
     
     init_notebook_mode(connected=True)         # initiate notebook for offline plot
-    
-#     phi = np.linspace(0, np.pi, values.shape[0])
-#     theta = np.linspace(0, 2 * np.pi, values.shape[0])
-#     phi, theta = np.meshgrid(phi, theta)
 
-#     xyz = np.array([np.sin(theta) * np.sin(phi),
-#                     np.sin(theta) * np.cos(phi),
-#                     np.cos(theta)])
-    
     if theta is None:
         if b is None:
             raise ValueError('The value of b must be specified')
         theta, phi = s2.meshgrid(b, grid_type=grid_type, centered=centered)
-#     theta = np.linspace(0, np.pi, values.shape[0])
-#     phi = np.linspace(-np.pi, np.pi, values.shape[0])
-#     theta, phi = np.meshgrid(theta, phi, indexing='ij')
 
     spherical = np.concatenate([np.expand_dims(np.ones(theta.shape).ravel(), -1), np.expand_dims(theta.ravel(), -1), np.expand_dims(phi.ravel(), -1)], axis=-1)
     
@@ -107,32 +96,11 @@ def spherical(values,
     x = x.reshape(theta.shape)
     y = y.reshape(theta.shape)
     z = z.reshape(theta.shape)
-    
-#     x = np.sin(theta) * np.cos(phi)
-#     y = np.sin(theta) * np.sin(phi)
-#     z = np.cos(theta)
-    
-#     xyz = np.array([np.cos(alpha) * np.sin(beta),
-#                     np.sin(alpha) * np.sin(beta),
-#                     np.cos(beta)])
-    
-#     beta = np.linspace(0, np.pi, values.shape[0])
-#     alpha = np.linspace(0, 2 * np.pi, values.shape[0])
-#     alpha, beta = np.meshgrid(alpha, beta, indexing='ij')
-    
-#     xyz = np.array([np.cos(alpha) * np.sin(beta),
-#                     np.sin(alpha) * np.sin(beta),
-#                     np.cos(beta)])
 
-#     Vx = values[:, 0] * x
-#     Vy = values[:, 1] * y
-#     Vx = values[:, 2] * z
     Vx = values * x
     Vy = values * y
     Vz = values * z
 
-#     Vx, Vy, Vz = values * xyz
-        
     if surface:
         if surfacecolor is None:
             surfacecolor=values
@@ -142,18 +110,10 @@ def spherical(values,
         data = go.Surface(x=Vx, y=Vy, z=Vz, surfacecolor=surfacecolor, )
         
     else:
-#         x, y, z = xyz
         data = go.Surface(x=x, y=y, z=z, surfacecolor=values)
         
     fig = go.Figure(data=data)
     fig.update_xaxes(showgrid=False, zeroline=False)
     fig.update_yaxes(showgrid=False, zeroline=False)
-#     fig['layout']['yaxis']['showgrid'] = False
-#     fig['layout']['xaxis']['showgrid'] = False
-#     fig['layout']['zaxis']['showgrid'] = False
-    
-    
-#     if show:
-#         fig.show()
     return fig
 
